@@ -231,7 +231,6 @@ def harcama_sil():
 
 
 def verileri_disa_aktar():
-    """Harcama verilerini 'harcamalar_yedek.csv' olarak dışa aktarır ve tam yolu gösterir."""
     try:
         output_file_name = "harcamalar_yedek.csv" 
         
@@ -290,7 +289,6 @@ def listele_harcamalar(filtre_kategori="Tüm Kategoriler", filtre_tipi="Tüm Zam
 
 
 def guncelle_grafik(records=None):
-    """Pasta (Kategori Dağılımı) ve Çubuk (Aylık Toplam) Grafiğini günceller."""
     for widget in graph_frame.winfo_children():
         widget.destroy() 
 
@@ -425,7 +423,6 @@ tree.bind("<<TreeviewSelect>>", fill_form_for_edit)
 
 tree.pack(fill="both", expand=True)
 
-# Sağ: Grafikler
 graph_frame = ctk.CTkFrame(main_frame)
 graph_frame.pack(side="right", fill="both", expand=True, padx=(5,0))
 
@@ -436,12 +433,10 @@ toplam_label = ctk.CTkLabel(bottom_frame, text="💰 Toplam Harcama: 0 TL",
                             font=ctk.CTkFont(size=14, weight="bold"))
 toplam_label.pack(side="left", padx=10)
 
-# ⬇️ Kategori Filtresi
 kategori_combobox = ctk.CTkComboBox(bottom_frame, values=[], width=150)
 kategori_combobox.pack(side="left", padx=10)
 kategori_combobox.set("Tüm Kategoriler") 
 
-# ⬇️ Zaman Filtresi
 zaman_filtre_combobox = ctk.CTkComboBox(bottom_frame, 
                                         values=["Tüm Zamanlar", "Bu Ay", "Bu Yıl", "Son 7 Gün"], 
                                         width=150)
@@ -456,17 +451,15 @@ temizle_btn = ctk.CTkButton(bottom_frame, text="♻️ Tümünü Göster",
                             command=lambda: listele_harcamalar("Tüm Kategoriler", "Tüm Zamanlar"))
 temizle_btn.pack(side="left", padx=5)
 
-# 🗑️ Seçili Harcamayı Sil butonu
 sil_btn = ctk.CTkButton(bottom_frame, text="🗑️ Seçili Harcamayı Sil",
                         command=harcama_sil, fg_color="#e74c3c", hover_color="#c0392b")
 sil_btn.pack(side="left", padx=10)
 
-# 💾 Veri Dışa Aktarma Butonu
 export_btn = ctk.CTkButton(bottom_frame, text="💾 Verileri Dışa Aktar (CSV)",
                            command=verileri_disa_aktar, fg_color="#27ae60", hover_color="#2ecc71")
 export_btn.pack(side="left", padx=10)
 
-# Uygulama Başlangıcı
+
 init_file()
 kategori_guncelle() 
 listele_harcamalar("Tüm Kategoriler", "Tüm Zamanlar") 
